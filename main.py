@@ -38,11 +38,13 @@ while coffee_machine_on == True:
     if machine_prompt == "espresso" or machine_prompt == "latte" or machine_prompt == "cappuccino":
 
         enough_resources = True
+        coffee_paid = False
 
         for ingredient in menu[machine_prompt]["ingredients"]:
             if menu[machine_prompt]["ingredients"][ingredient] > resources[ingredient]:
-                enough_resources: False
+                enough_resources = False
                 print(f"Sorry there is not enough {ingredient.lower()}")
+                break
 
         if enough_resources:
             coffee_cost = menu[machine_prompt]['cost']
@@ -58,9 +60,20 @@ while coffee_machine_on == True:
             elif total_paid > coffee_cost:
                 change = total_paid - coffee_cost
                 print(f"Here is ${round(change,2)} dollars in change.")
+                coffee_paid = True
                 money += coffee_cost
             else:
+                coffee_paid = True
                 money += coffee_cost
+
+        if enough_resources and coffee_paid:
+            for ingredient in menu[machine_prompt]["ingredients"]:
+                resources[ingredient] -= menu[machine_prompt]["ingredients"][ingredient]
+
+            print(f"Here is your {machine_prompt}. Enjoy!")
+
+
+
 
 
 

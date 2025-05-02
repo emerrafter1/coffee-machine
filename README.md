@@ -95,4 +95,16 @@
        Money: $0
        ```
 
-     - Report
+    - Report **after** purchasing:
+
+       ```
+       Water: 100ml
+       Milk: 50ml
+       Coffee: 76g
+       Money: $2.5
+       ```
+
+   - Display message:
+
+     ```
+     Here is your latte. Enjoy!
